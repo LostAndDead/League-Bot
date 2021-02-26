@@ -12,6 +12,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const yaml = require('js-yaml');
 const init_commands = require("./init_commands")
+const utils = require("./utils")
 
 const bot = new Discord.Client({ disableEveryone: true});
 
@@ -45,7 +46,7 @@ fs.readdir("./commands/", (err, file) => {
 });
 
 //creates data files if they dont exist
-const data = new Uint8Array(Buffer.from('{"Leagues":{}}'));
+const data = new Uint8Array(Buffer.from('{"Leagues":{},"Ignore":[]}'));
 
 fs.access("data.json", fs.F_OK, (err) => {
     if (err) {
@@ -80,7 +81,7 @@ process.on('warning', console.warn);
 
 bot.on("ready", async() => {
 
-    await init_commands.sendCalls(bot, calls, Config.Setup.JustGuildCommands)
+    await init_commands.sendCalls(bot, calls)
 
     console.log("\nThe bot is now online")
     console.log("Keep this window open for the bot to run\n")
@@ -92,6 +93,12 @@ bot.on("ready", async() => {
         const command = interaction.data.name.toLowerCase();
         const args = interaction.data.options;
 
+        let data = await utils.loadData()
+
+        if(data.Ignore.includes(interaction.member.user.id)){
+            return
+        }
+
         //Load all the commands
         const ping = require("./commands/ping")
         const echo = require("./commands/echo")
@@ -100,6 +107,8 @@ bot.on("ready", async() => {
         const table = require("./commands/table")
         const adjust = require("./commands/adjust")
         const help = require("./commands/help")
+        const ignore = require("./commands/ignore")
+        const unignore = require("./commands/unignore")
 
         switch(command){
             case "ping":
@@ -122,6 +131,12 @@ bot.on("ready", async() => {
                 break;
             case "help":
                 help.run(bot, interaction, args)
+                break;
+            case "ignore":
+                ignore.run(bot, interaction, args)
+                break;
+            case "unignore":
+                unignore.run(bot, interaction, args)
                 break;
         }
     })

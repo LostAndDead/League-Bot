@@ -7,7 +7,8 @@ To setup is rather simple:
 3. Run `npm install` in the folder
 4. Copy `config.yml.example` and fill it out with the right details
 5. Rename `config.yml.example` to `config.yml`
-6. Run `npm start` and boom its online!
+6. Enable `SetupCommands` for the first run to setup commands, this only needs to be done once per update
+7. Run `npm start` and boom its online!
 
 ## IMPORTANT!
 ## Commands will not register globaly imediatly! They can take upto an hour due to discord CDN! More info bellow
