@@ -14,7 +14,7 @@ module.exports.run = async(bot, interaction, args) => {
 
     let embed = new Discord.MessageEmbed()
     .setTitle("Bot help/info")
-    .addField("Commands", "I dont need to list commands here as discord does it fore me! just type a `/` and my commands will apear in the list as well as options and arguments!")
+    .addField("Commands", "I dont need to list commands here as discord does it for me! just type a `/` and my commands will apear in the list as well as options and arguments!")
     .addField("Info", `
     Current Version: \`${pjson.version}\`
     Git Repo: https://github.com/LostAndDead/League-Bot
