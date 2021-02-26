@@ -1,0 +1,9 @@
+Setup:
+  # Your bot token from https://discord.com/developers/applications
+  Token: TOKEN
+  # Wether not the commands i registered to only one guild (Recomend to leave it on false)
+  JustGuildCommands: false
+  # If JustGuildCommands is enabled the ID of the guild to register them to
+  GuildID: 'ID'
+  # Role ID for staff members
+  StaffRoleID: "478190462998544396"
