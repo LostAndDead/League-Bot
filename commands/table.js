@@ -50,17 +50,23 @@ module.exports.run = async(bot, interaction, args) => {
 
     var message = ""
     var place = 1
+    var first = true
+    var url
     for(player in sortedData){
-        var guild = bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
-        var user = await guild.members.fetch(player)
+        var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
+        var user = await guild.members.cache.find(user => user.id == player).user
+        if(first){
+            url = user.displayAvatarURL()
+            first = false
+        }
         if(sortedData[player].adjusted == 0){
             message += `
-            **${place}.** ${user.displayName} » **${sortedData[player].total}**
+            **${place}.** ${user.username} » **${sortedData[player].total}**
             \`| Played: ${sortedData[player].played} | Won: ${sortedData[player].wins} | Lost: ${sortedData[player].loses} | Drew: ${sortedData[player].draws} |\`
             `
         }else{
             message += `
-            **${place}.** ${user.displayName} » **${sortedData[player].total}**
+            **${place}.** ${user.username} » **${sortedData[player].total}**
             \`| Played: ${sortedData[player].played} | Won: ${sortedData[player].wins} | Lost: ${sortedData[player].loses} | Drew: ${sortedData[player].draws} | Adjusted: ${sortedData[player].adjusted} |\`
             `
         }
@@ -69,8 +75,8 @@ module.exports.run = async(bot, interaction, args) => {
     }
 
     var embed = new Discord.MessageEmbed()
-        .setColor("0xFFD700")
-        .setThumbnail(bot.user.displayAvatarURL())
+        .setColor("0xd47c25")
+        .setThumbnail(url)
         .setDescription(message)
         .setTitle(`League Table For **${data.Leagues[interaction.channel_id].cn}**`);
 

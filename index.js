@@ -84,7 +84,8 @@ bot.on("ready", async() => {
 
     console.log("\nThe bot is now online")
     console.log("Keep this window open for the bot to run\n")
-    console.log(`Invite me to a server with the following link.\nhttps://discordapp.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=125952&scope=bot\n`);
+    console.log(`Invite me to a server with the following link.\nhttps://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=2147609600&scope=bot%20applications.commands\n`);
+    
     console.log("Press CTRL+C to exit\n")
 
     bot.ws.on("INTERACTION_CREATE", async interaction => {
@@ -98,6 +99,7 @@ bot.on("ready", async() => {
         const result = require("./commands/result")
         const table = require("./commands/table")
         const adjust = require("./commands/adjust")
+        const help = require("./commands/help")
 
         switch(command){
             case "ping":
@@ -117,6 +119,9 @@ bot.on("ready", async() => {
                 break;
             case "adjust":
                 adjust.run(bot, interaction, args)
+                break;
+            case "help":
+                help.run(bot, interaction, args)
                 break;
         }
     })

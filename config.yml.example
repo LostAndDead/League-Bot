@@ -6,4 +6,4 @@ Setup:
   # If JustGuildCommands is enabled the ID of the guild to register them to
   GuildID: 'ID'
   # Role ID for staff members
-  StaffRoleID: "478190462998544396"
+  StaffRoleID: 'ROLE ID'

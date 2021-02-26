@@ -64,7 +64,7 @@ module.exports.run = async(bot, interaction, args) => {
 
 module.exports.info = {
     "name": "result",
-    "description": "Submit a result of a match for you",
+    "description": "Submit a result of a match for you or another user",
     "options" : [
         {
             "name": "result",

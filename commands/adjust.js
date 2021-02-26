@@ -27,6 +27,10 @@ module.exports.run = async(bot, interaction, args) => {
             return utils.error(bot, interaction, "That player is not in the League")
         }
 
+        if(args.find(arg => arg.name.toLowerCase() == "ammount").value > 50){
+            return utils.error(bot, interaction, "Ammount cant be bigger than 50")
+        }
+
         var oldPlayer = {...data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value]}
 
         data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value].adjusted += args.find(arg => arg.name.toLowerCase() == "ammount").value
@@ -52,6 +56,10 @@ module.exports.run = async(bot, interaction, args) => {
 
         if(!data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value]){
             return utils.error(bot, interaction, "That player is not in the League")
+        }
+
+        if(args.find(arg => arg.name.toLowerCase() == "ammount").value > 50){
+            return utils.error(bot, interaction, "Ammount cant be bigger than 50")
         }
 
         var oldPlayer = {...data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value]}
@@ -121,7 +129,7 @@ module.exports.info = {
                 },
                 {
                     "name": "ammount",
-                    "description": "The ammount to increase the score by",
+                    "description": "The ammount to increase the score by (Max 50)",
                     "type": 4,
                     "required": true
                 }
@@ -140,7 +148,7 @@ module.exports.info = {
                 },
                 {
                     "name": "ammount",
-                    "description": "The ammount to decrease the score by",
+                    "description": "The ammount to decrease the score by (Max 50)",
                     "type": 4,
                     "required": true
                 }
