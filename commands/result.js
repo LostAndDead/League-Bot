@@ -73,15 +73,15 @@ module.exports.info = {
             "required": true,
             "choices": [
                 {
-                    "name": "So you won eh? Pretty good",
+                    "name": "Victory",
                     "value": "win"
                 },
                 {
-                    "name": "Draw? Not bad...",
+                    "name": "Draw",
                     "value": "draw"
                 },
                 {
-                    "name": "Ah you lost... Well this is awkward",
+                    "name": "Defeat",
                     "value": "lose"
                 }
             ]
