@@ -60,7 +60,7 @@ module.exports.run = async(bot, interaction, args) => {
 
         data.Leagues[interaction.channel_id].players = {}
         let embed = new Discord.MessageEmbed()
-            .setTitle("🔄 League Deleted 🔄")
+            .setTitle("🔄 League Reset 🔄")
             .setDescription(`Successfully reset all player data for **${data.Leagues[interaction.channel_id].cn}**`)
             .setColor("0xFFA500")
         utils.sendEmbed(bot, interaction, embed)
