@@ -3,6 +3,8 @@ Setup:
   Token: TOKEN
   # Role ID for staff members
   StaffRoleID: "ROLE ID"
+  # Wether to log data or not
+  Log: false
 Commands:
   # This only needs to be enabled for the first run to register the commands with discord as it means starting takes longer to avoid rate limiting
   SetupCommands: true

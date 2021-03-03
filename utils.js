@@ -9,6 +9,7 @@
 const Discord = require("discord.js");
 const fs = require("fs");
 const yaml = require('js-yaml');
+const { config } = require("process");
 
 const opts = {
     errorEventName:'error',
@@ -27,8 +28,10 @@ async function createAPIMessage(bot, interaction, content){
 }
 
 module.exports.log = async (message) => {
-    log.info(message)
-    console.log(message)
+    if(config.Setup.Log){
+        log.info(message)
+        console.log(message)
+    }
 }
 
 module.exports.loadData = async() => {
