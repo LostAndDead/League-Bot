@@ -19,6 +19,16 @@ const opts = {
 };
 const log = require('simple-node-logger').createRollingFileLogger( opts );
 
+let Config = null;
+
+try {
+    let fileContents = fs.readFileSync('./config.yml', 'utf8');
+    Config = yaml.load(fileContents);
+}
+catch (e) {
+    console.log(e);
+}
+
 async function createAPIMessage(bot, interaction, content){
     const apiMessage = await Discord.APIMessage.create(bot.channels.resolve(interaction.channel_id), content)
         .resolveData()
