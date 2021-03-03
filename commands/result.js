@@ -14,6 +14,7 @@ module.exports.run = async(bot, interaction, args) => {
     let UserID = interaction.member.user.id
     let data = await utils.loadData()
     let Config = await utils.loadConfig()
+    var d = new Date();
 
     if(!data.Leagues[interaction.channel_id]){
         return utils.error(bot, interaction, "This is not a league channel")
@@ -38,22 +39,53 @@ module.exports.run = async(bot, interaction, args) => {
         }
     }
 
-    data.Leagues[interaction.channel_id].players[UserID].played ++
-
     switch(args.find(arg => arg.name.toLowerCase() == "result").value){
         case "win":
+            data.Leagues[interaction.channel_id].players[UserID].played ++
             data.Leagues[interaction.channel_id].players[UserID].wins ++
             data.Leagues[interaction.channel_id].players[UserID].total += 3
             utils.success(bot, interaction, `Congrats <@${UserID}> on the win!`)
+            var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
+            var user = await guild.members.cache.find(user => user.id == UserID).user
+            var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
+            console.log('-------------------- Result Added --------------------')
+            console.log('Result: Win')
+            console.log(`Message Author: ${author.username} | ID: ${author.id}`)
+            console.log(`Result For: ${user.username} | ID: ${user.id}`)
+            console.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Wins: ${data.Leagues[interaction.channel_id].players[UserID].wins} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
+            console.log(`Time: ${d}`)
+            console.log('------------------------------------------------------')
             break;
         case "draw":
+            data.Leagues[interaction.channel_id].players[UserID].played ++
             data.Leagues[interaction.channel_id].players[UserID].draws ++
             data.Leagues[interaction.channel_id].players[UserID].total += 1
             utils.success(bot, interaction, `So close <@${UserID}>...`)
+            var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
+            var user = await guild.members.cache.find(user => user.id == UserID).user
+            var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
+            console.log('-------------------- Result Added --------------------')
+            console.log('Result: Draw')
+            console.log(`Message Author: ${author.username} | ID: ${author.id}`)
+            console.log(`Result For: ${user.username} | ID: ${user.id}`)
+            console.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Draws: ${data.Leagues[interaction.channel_id].players[UserID].draws} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
+            console.log(`Time: ${d}`)
+            console.log('------------------------------------------------------')
             break;
         case "lose":
+            data.Leagues[interaction.channel_id].players[UserID].played ++
             data.Leagues[interaction.channel_id].players[UserID].loses ++
             utils.success(bot, interaction, `Better luck next time <@${UserID}>`)
+            var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
+            var user = await guild.members.cache.find(user => user.id == UserID).user
+            var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
+            console.log('-------------------- Result Added --------------------')
+            console.log('Result: Loss')
+            console.log(`Message Author: ${author.username} | ID: ${author.id}`)
+            console.log(`Result For: ${user.username} | ID: ${user.id}`)
+            console.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Wins: ${data.Leagues[interaction.channel_id].players[UserID].loses} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
+            console.log(`Time: ${d}`)
+            console.log('------------------------------------------------------')
             break;
     }
 
