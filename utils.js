@@ -38,7 +38,7 @@ async function createAPIMessage(bot, interaction, content){
 }
 
 module.exports.log = async (message) => {
-    if(config.Setup.Log){
+    if(Config.Setup.Log){
         log.info(message)
         console.log(message)
     }
