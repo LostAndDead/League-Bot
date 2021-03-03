@@ -11,6 +11,7 @@ const utils = require("../utils")
 
 module.exports.run = async(bot, interaction, args) => {
 
+    var d = new Date();
     let Config = await utils.loadConfig()
 
     if(!interaction.member.roles.includes(Config.Setup.StaffRoleID)){
@@ -38,8 +39,17 @@ module.exports.run = async(bot, interaction, args) => {
 
         var newPlayer = data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value]
 
-        var guild = bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
+        var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
         var user = await guild.members.fetch(args.find(arg => arg.name.toLowerCase() == "user").value)
+        var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
+
+        utils.log('------------------- Points Adjusted ------------------')
+        utils.log('Adjustment: Add')
+        utils.log(`Message Author: ${author.username} | ID: ${author.id}`)
+        utils.log(`Adjusted For: ${user.username} | ID: ${user.id}`)
+        utils.log(`Adjustments: Total ${data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value].total} | Adjusted ${data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value].adjusted}`)
+        utils.log(`Time: ${d}`)
+        utils.log('------------------------------------------------------')
 
         let embed = new Discord.MessageEmbed()
             .setTitle("⬆️ Points Updated ⬆️")
@@ -69,8 +79,17 @@ module.exports.run = async(bot, interaction, args) => {
 
         var newPlayer = data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value]
 
-        var guild = bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
+        var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
         var user = await guild.members.fetch(args.find(arg => arg.name.toLowerCase() == "user").value)
+        var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
+
+        utils.log('------------------- Points Adjusted ------------------')
+        utils.log('Adjustment: Remove')
+        utils.log(`Message Author: ${author.username} | ID: ${author.id}`)
+        utils.log(`Adjusted For: ${user.username} | ID: ${user.id}`)
+        utils.log(`Adjustments: Total ${data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value].total} | Adjusted ${data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value].adjusted}`)
+        utils.log(`Time: ${d}`)
+        utils.log('------------------------------------------------------')
 
         let embed = new Discord.MessageEmbed()
             .setTitle("⬇️ Points Updated ⬇️")
@@ -98,8 +117,17 @@ module.exports.run = async(bot, interaction, args) => {
             "adjusted": 0
         }
 
-        var guild = bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
+        var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
         var user = await guild.members.fetch(args.find(arg => arg.name.toLowerCase() == "user").value)
+        var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
+
+        utils.log('------------------- Points Adjusted ------------------')
+        utils.log('Adjustment: Reset')
+        utils.log(`Message Author: ${author.username} | ID: ${author.id}`)
+        utils.log(`Adjusted For: ${user.username} | ID: ${user.id}`)
+        utils.log(`Adjustments: Total ${data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value].total} | Adjusted ${data.Leagues[interaction.channel_id].players[args.find(arg => arg.name.toLowerCase() == "user").value].adjusted}`)
+        utils.log(`Time: ${d}`)
+        utils.log('------------------------------------------------------')
 
         let embed = new Discord.MessageEmbed()
             .setTitle("🔄 Points Reset 🔄")

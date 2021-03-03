@@ -16,6 +16,8 @@ const utils = require("./utils")
 
 const bot = new Discord.Client({ disableEveryone: true});
 
+utils.log('---------------------- Restarted ---------------------')
+
 let Config = null;
 let calls = []
 

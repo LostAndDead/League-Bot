@@ -48,7 +48,7 @@ module.exports.sendCalls = async(bot, calls) => {
 
         const json = await res.json()
         if(json.code || json.message){
-            console.log(json)
+            utils.log(json)
         }else{
             console.log(x + "/"+ calls.length)
             x++

@@ -10,12 +10,25 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const yaml = require('js-yaml');
 
+const opts = {
+    errorEventName:'error',
+        logDirectory:'./logs', // NOTE: folder must exist and be writable...
+        fileNamePattern:'log-<DATE>.log',
+        dateFormat:'DD.MM.YYYY'
+};
+const log = require('simple-node-logger').createRollingFileLogger( opts );
+
 async function createAPIMessage(bot, interaction, content){
     const apiMessage = await Discord.APIMessage.create(bot.channels.resolve(interaction.channel_id), content)
         .resolveData()
         .resolveFiles();
 
     return {...apiMessage.data, files: apiMessage.files};
+}
+
+module.exports.log = async (message) => {
+    log.info(message)
+    console.log(message)
 }
 
 module.exports.loadData = async() => {
@@ -77,7 +90,7 @@ module.exports.loadConfig = async() => {
         return yaml.load(fileContents);
     }
     catch (e) {
-        console.log(e);
+        log.info(e);
     }
 }
 

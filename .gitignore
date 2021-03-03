@@ -2,3 +2,5 @@
 /data struct.json
 /data.json
 /node_modules
+/logs/*
+!/logs/.gitkeep

@@ -44,48 +44,59 @@ module.exports.run = async(bot, interaction, args) => {
             data.Leagues[interaction.channel_id].players[UserID].played ++
             data.Leagues[interaction.channel_id].players[UserID].wins ++
             data.Leagues[interaction.channel_id].players[UserID].total += 3
+
             utils.success(bot, interaction, `Congrats <@${UserID}> on the win!`)
+
             var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
             var user = await guild.members.cache.find(user => user.id == UserID).user
             var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
-            console.log('-------------------- Result Added --------------------')
-            console.log('Result: Win')
-            console.log(`Message Author: ${author.username} | ID: ${author.id}`)
-            console.log(`Result For: ${user.username} | ID: ${user.id}`)
-            console.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Wins: ${data.Leagues[interaction.channel_id].players[UserID].wins} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
-            console.log(`Time: ${d}`)
-            console.log('------------------------------------------------------')
+
+            utils.log('-------------------- Result Added --------------------')
+            utils.log('Result: Win')
+            utils.log(`Message Author: ${author.username} | ID: ${author.id}`)
+            utils.log(`Result For: ${user.username} | ID: ${user.id}`)
+            utils.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Wins: ${data.Leagues[interaction.channel_id].players[UserID].wins} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
+            utils.log(`Time: ${d}`)
+            utils.log('------------------------------------------------------')
+
             break;
         case "draw":
             data.Leagues[interaction.channel_id].players[UserID].played ++
             data.Leagues[interaction.channel_id].players[UserID].draws ++
             data.Leagues[interaction.channel_id].players[UserID].total += 1
+
             utils.success(bot, interaction, `So close <@${UserID}>...`)
+
             var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
             var user = await guild.members.cache.find(user => user.id == UserID).user
             var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
-            console.log('-------------------- Result Added --------------------')
-            console.log('Result: Draw')
-            console.log(`Message Author: ${author.username} | ID: ${author.id}`)
-            console.log(`Result For: ${user.username} | ID: ${user.id}`)
-            console.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Draws: ${data.Leagues[interaction.channel_id].players[UserID].draws} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
-            console.log(`Time: ${d}`)
-            console.log('------------------------------------------------------')
+
+            utils.log('-------------------- Result Added --------------------')
+            utils.log('Result: Draw')
+            utils.log(`Message Author: ${author.username} | ID: ${author.id}`)
+            utils.log(`Result For: ${user.username} | ID: ${user.id}`)
+            utils.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Draws: ${data.Leagues[interaction.channel_id].players[UserID].draws} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
+            utils.log(`Time: ${d}`)
+            utils.log('------------------------------------------------------')
+
             break;
         case "lose":
             data.Leagues[interaction.channel_id].players[UserID].played ++
             data.Leagues[interaction.channel_id].players[UserID].loses ++
+
             utils.success(bot, interaction, `Better luck next time <@${UserID}>`)
+
             var guild = await bot.guilds.cache.find(guild => guild.id == interaction.guild_id)
             var user = await guild.members.cache.find(user => user.id == UserID).user
             var author = await guild.members.cache.find(user => user.id == interaction.member.user.id).user
-            console.log('-------------------- Result Added --------------------')
-            console.log('Result: Loss')
-            console.log(`Message Author: ${author.username} | ID: ${author.id}`)
-            console.log(`Result For: ${user.username} | ID: ${user.id}`)
-            console.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Wins: ${data.Leagues[interaction.channel_id].players[UserID].loses} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
-            console.log(`Time: ${d}`)
-            console.log('------------------------------------------------------')
+            
+            utils.log('-------------------- Result Added --------------------')
+            utils.log('Result: Loss')
+            utils.log(`Message Author: ${author.username} | ID: ${author.id}`)
+            utils.log(`Result For: ${user.username} | ID: ${user.id}`)
+            utils.log(`New Data: Played: ${data.Leagues[interaction.channel_id].players[UserID].played} | Wins: ${data.Leagues[interaction.channel_id].players[UserID].loses} | Total: ${data.Leagues[interaction.channel_id].players[UserID].total}`)
+            utils.log(`Time: ${d}`)
+            utils.log('------------------------------------------------------')
             break;
     }
 
