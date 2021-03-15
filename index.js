@@ -145,4 +145,14 @@ bot.on("ready", async() => {
 
 });
 
+bot.on("guildMemberAdd", member => {
+    if(Config.Setup.AutoRoleID == "0"){return;}
+    try{
+        member.roles.add(Config.Setup.AutoRoleID)
+    }catch (e){
+        return;
+    }
+    
+})
+
 bot.login(Config.Setup.Token);

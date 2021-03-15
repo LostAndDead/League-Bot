@@ -3,6 +3,8 @@ Setup:
   Token: TOKEN
   # Role ID for staff members
   StaffRoleID: "ROLE ID"
+  # Role ID for auto roll, set to 0 to disable
+  AutoRoleID: "ROLE ID"
   # Wether to log data or not
   Log: false
 Commands:
