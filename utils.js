@@ -118,7 +118,8 @@ module.exports.error = async(bot, interaction, message) => {
     await bot.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
             type: 4,
-            data: apiMessage
+            data: apiMessage,
+            flags: 64
         }
     })
 }

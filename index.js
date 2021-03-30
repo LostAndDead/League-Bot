@@ -85,7 +85,7 @@ bot.on("ready", async() => {
 
     await init_commands.sendCalls(bot, calls)
 
-    console.log("\nThe bot is now online")
+    console.log("\nOnline!")
     console.log("Keep this window open for the bot to run\n")
     console.log(`Invite me to a server with the following link.\nhttps://discord.com/api/oauth2/authorize?client_id=${bot.user.id}&permissions=2147609600&scope=bot%20applications.commands\n`);
     
