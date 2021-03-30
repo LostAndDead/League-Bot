@@ -37,6 +37,14 @@ async function createAPIMessage(bot, interaction, content){
     return {...apiMessage.data, files: apiMessage.files};
 }
 
+async function createErrorAPIMessage(bot, interaction, content){
+    const apiMessage = await Discord.APIMessage.create(bot.channels.resolve(interaction.channel_id), content)
+        .resolveData()
+        .resolveFiles();
+
+    return {...apiMessage.data, files: apiMessage.files, flags: 64};
+}
+
 module.exports.log = async (message) => {
     if(Config.Setup.Log){
         log.info(message)
@@ -113,7 +121,7 @@ module.exports.error = async(bot, interaction, message) => {
         .setDescription(message)
         .setColor("0xFF0000");
     
-    let apiMessage = await createAPIMessage(bot, interaction, embed)
+    let apiMessage = await createErrorAPIMessage(bot, interaction, embed)
 
     await bot.api.interactions(interaction.id, interaction.token).callback.post({
         data: {
